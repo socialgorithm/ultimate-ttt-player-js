@@ -18,37 +18,12 @@ class GameLogic {
 
     this.size = size;
     this.player = player;
-    this.oponent = 3 - player;
+    this.opponent = 3 - player;
 
     this.init();
   }
 
-  /* ----- Required methods ----- */
-
-  init(){
-    this.game = new UTTT(this.size);
-  }
-
-  addOpponentMove(board, move){
-    this.game.move(board, this.oponent, move);
-  }
-
-  addMove(board, move){
-    this.game.move(board, this.player, move);
-  }
-
-  getMove(){
-    const boardCoords = this.getNextBoard();
-    const board = this.game.board[boardCoords[0]][boardCoords[1]];
-    const move = this.getNextMove(board);
-
-    return {
-      board: boardCoords,
-      move: move
-    };
-  }
-
-  /* ---- Non required methods ----- */
+  /* ---- Game Logic: This is what you need to edit ----- */
 
   /**
    * Choose a valid board to play in
@@ -66,7 +41,7 @@ class GameLogic {
 
     // If we get here, it means that you've been sent to a board that was already
     // finished, so you can choose any board now
-    // TODO The next bit of code should select the ideal board to play in
+    // TODO The next bit of code should select the ideal board to play on
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         if(!this.game.board[x][y].isFinished()){
@@ -90,7 +65,7 @@ class GameLogic {
    */
   getNextMove(board){
     let valid = false;
-    // TODO Change this so it's choosing a move based on something
+    // TODO Change this so it's choosing an optimal move (or as close as you can get ;) )
     while(!valid){
       let move = [
         this.getRandomCoordinate(),
@@ -109,6 +84,31 @@ class GameLogic {
    */
   getRandomCoordinate(){
     return Math.round(Math.random() * (this.size - 1));
+  }
+
+  /* ----- Required methods - Don't change this ----- */
+
+  init(){
+    this.game = new UTTT(this.size);
+  }
+
+  addOpponentMove(board, move){
+    this.game.move(board, this.opponent, move);
+  }
+
+  addMove(board, move){
+    this.game.move(board, this.player, move);
+  }
+
+  getMove(){
+    const boardCoords = this.getNextBoard();
+    const board = this.game.board[boardCoords[0]][boardCoords[1]];
+    const move = this.getNextMove(board);
+
+    return {
+      board: boardCoords,
+      move: move
+    };
   }
 }
 
