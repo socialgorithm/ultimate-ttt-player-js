@@ -1,4 +1,4 @@
-const UTTT = require('ultimate-ttt');
+const UTTT = require('ultimate-ttt').default;
 
 /**
  * Starting point for a player

@@ -1,5 +1,6 @@
 {
-  "name": "uttt-player",
+  "name": "@socialgorithm/uttt-player",
+  "private": true,
   "version": "1.0.0",
   "description": "Initial UTTT Player for the algorithm competition",
   "main": "player.js",
@@ -17,6 +18,6 @@
   },
   "homepage": "https://github.com/aurbano/uttt-player#readme",
   "dependencies": {
-    "ultimate-ttt": "^2.1.2"
+    "ultimate-ttt": "^4.5.0"
   }
 }
