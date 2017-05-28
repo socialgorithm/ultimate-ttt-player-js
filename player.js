@@ -1,6 +1,6 @@
 const readline = require('readline');
 // Random player implementation
-const GameLogic = require('./src/logic');
+const GameLogic = require('./src/random/logic');
 
 /**
  * Random client implementation of the UTTT Game
@@ -19,7 +19,7 @@ function input() {
     const parts = input.split(' ');
     const action = parts[0];
 
-    let next, move, board, coords;
+    let next, move, coords;
 
     switch (action) {
       case 'init':
@@ -31,7 +31,7 @@ function input() {
           player.addMove(coords.board, coords.move);
           writeMove(coords);
         } catch(e) {
-          console.log('fail');
+          console.error('Player Error: Failed to get a move', e);
         }
         break;
       case 'opponent':
@@ -39,15 +39,22 @@ function input() {
         // where the first pair are the board's coordinates
         // and the second one are the move's coordinates
         next = parts[1].split(';');
-        board = next[0].split(',');
-        move = next[1].split(',');
-        player.addOpponentMove(board, move);
-        try {
+        const boardCoords = next[0].split(',').map((coord) => parseInt(coord, 10));
+        const moveCoords = next[1].split(',').map((coord) => parseInt(coord, 10));
+        player.addOpponentMove(
+          [
+            boardCoords[0],
+            boardCoords[1]
+          ],
+          [
+            moveCoords[0],
+            moveCoords[1]
+          ]
+        );
+        if (!player.game.isFinished()) {
           coords = player.getMove();
           player.addMove(coords.board, coords.move);
           writeMove(coords);
-        } catch(e) {
-          console.log('fail');
         }
         break;
     }
