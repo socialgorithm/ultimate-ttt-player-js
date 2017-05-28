@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/aurbano/uttt-player#readme",
   "dependencies": {
-    "@socialgorithm/ultimate-ttt": "^4.8.0"
+    "@socialgorithm/ultimate-ttt": "^4.13.0"
   }
 }

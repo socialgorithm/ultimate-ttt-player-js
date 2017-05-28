@@ -1,6 +1,6 @@
 const readline = require('readline');
 // Random player implementation
-const GameLogic = require('./src/random/logic');
+const GameLogic = require('./src/defensive/logic');
 
 /**
  * Random client implementation of the UTTT Game
