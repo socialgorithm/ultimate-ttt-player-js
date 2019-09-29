@@ -62,7 +62,7 @@ function input() {
 }
 
 function writeMove(coords) {
-  const move = coords.board[0] + ',' + coords.board[1] + ';' +
+  const move = 'send:' + coords.board[0] + ',' + coords.board[1] + ';' +
     coords.move[0] + ',' + coords.move[1];
   write(move);
 }
