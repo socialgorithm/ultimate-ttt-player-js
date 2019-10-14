@@ -22,13 +22,35 @@ class GameLogic {
 
   /* ----- Required methods ----- */
 
+  /*
+   * New Game Has Been Started.
+   * Do Whatever You Need To Do For The Player To Be Ready To Play
+   */
   init(){
     this.game = new UTTT(this.size);
   }
 
-  addOpponentMove(board, move) {
+  /**
+   * Opponent Has Moved.
+   * You Have Opponents Board
+   * You Have Opponents Move
+   * 
+   * You Must Respond With Board Matching Opponents Move
+   * Unless That Board Is Complete
+   * 
+   * @param board Board identifier [row, col]
+   * @param move Cell identifier [row, col]
+   * @returns {{board: [number,number], move: [number, number]}} Position coordinates {board: [row, col], cell: [row, col]}
+   * 
+   */
+  onOpponentMove(board, move) {
     try {
         this.game = this.game.addOpponentMove(board, move);
+        if (!this.game.isFinished()) {
+          const coords = this.getMove();
+          this.addMove(coords.board, coords.move);
+          return coords;
+        }
     } catch (e) {
         console.error('-------------------------------');
         console.error("\n"+'AddOpponentMove: Game probably already over when adding', board, move, e);
@@ -38,6 +60,75 @@ class GameLogic {
         throw new Error(e);
     }
   }
+
+  /**
+   * You are the First To Move
+   * Place Whereever You Want
+   * You Get To Pick The Board
+   * 
+   * @returns {{board: [number,number], move: [number, number]}} Position coordinates {board: [row, col], cell: [row, col]}
+   */
+  onMove() {
+    try {
+      const coords = this.getMove();
+      this.addMove(coords.board, coords.move);
+    } catch (e) {
+        console.error('-------------------------------');
+        console.error("\n"+'AddOpponentMove: Game probably already over when adding', board, move, e);
+        console.error("\n"+this.game.prettyPrint());
+        console.error("\n"+this.game.stateBoard.prettyPrint(true));
+        console.error('-------------------------------');
+        throw new Error(e);
+    }
+  }
+
+  /**
+   * Game Is Over.
+   * You May Wish To Change Stratagy For The New Game.
+   * Your Opponent Has Not Changed.
+   * 
+   * @param result Either 'win' | 'lose' | 'tie'
+   * @param board Last Opponent Board identifier [row, col]
+   * @param move Last Opponent Cell identifier [row, col]
+   * @returns {undefined}
+   */
+  gameOver(result, board, move) {
+    if(board && move) {
+      this.game.addOpponentMove(board, move);
+    }
+    if (result === 'win') {
+      console.debug('win');
+      /* DO SOMETHING WITH WIN NEWS */
+    } else if (result === 'lose') {
+      console.debug('lose');
+      /* DO SOMETHING WITH LOSE NEWS */
+    } else if (result === 'tie') {
+      console.debug('tie');
+      /* DO SOMETHING WITH TIE NEWS */
+    }
+  }
+
+  /**
+   * Match Is Over.
+   * You Will Soon Have A New Opponent.
+   * 
+   * @param result Either 'win' | 'lose' | 'tie'
+   * @returns {undefined}
+   */
+  matchOver(result) {
+    if (result === 'win') {
+      console.debug('win');
+      /* DO SOMETHING WITH WIN NEWS */
+    } else if (result === 'lose') {
+      console.debug('lose');
+      /* DO SOMETHING WITH LOSE NEWS */
+    } else if (result === 'tie') {
+      console.debug('tie');
+      /* DO SOMETHING WITH TIE NEWS */
+    }
+  }
+
+  /* ---- Non required methods ----- */
 
   addMove(board, move){
     try {
@@ -62,8 +153,6 @@ class GameLogic {
         move: move
     };
   }
-
-  /* ---- Non required methods ----- */
 
   /**
    * Choose a valid board to play in

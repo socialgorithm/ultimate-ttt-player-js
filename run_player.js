@@ -1,6 +1,6 @@
 const readline = require('readline');
 // Random player implementation
-const GameLogic = require('./src/defensive/logic');
+const GameLogic = require('./src/random/logic');
 
 /**
  * Random client implementation of the UTTT Game
@@ -41,7 +41,7 @@ function input() {
         next = parts[1].split(';');
         const boardCoords = next[0].split(',').map((coord) => parseInt(coord, 10));
         const moveCoords = next[1].split(',').map((coord) => parseInt(coord, 10));
-        player.addOpponentMove(
+        const move = player.onOpponentMove(
           [
             boardCoords[0],
             boardCoords[1]
@@ -51,10 +51,8 @@ function input() {
             moveCoords[1]
           ]
         );
-        if (!player.game.isFinished()) {
-          coords = player.getMove();
-          player.addMove(coords.board, coords.move);
-          writeMove(coords);
+        if (move) {
+          writeMove(move);
         }
         break;
     }
