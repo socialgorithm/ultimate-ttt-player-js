@@ -19,7 +19,7 @@ function input() {
     const parts = input.split(' ');
     const action = parts[0];
 
-    let next, move, coords;
+    let next, move, coords, result;
 
     switch (action) {
       case 'init':
@@ -27,8 +27,7 @@ function input() {
         break;
       case 'move':
         try {
-          coords = player.getMove();
-          player.addMove(coords.board, coords.move);
+          coords = player.onMove();
           writeMove(coords);
         } catch(e) {
           console.error('Player Error: Failed to get a move', e);
@@ -41,7 +40,7 @@ function input() {
         next = parts[1].split(';');
         const boardCoords = next[0].split(',').map((coord) => parseInt(coord, 10));
         const moveCoords = next[1].split(',').map((coord) => parseInt(coord, 10));
-        const move = player.onOpponentMove(
+        coords = player.onOpponentMove(
           [
             boardCoords[0],
             boardCoords[1]
@@ -51,9 +50,24 @@ function input() {
             moveCoords[1]
           ]
         );
-        if (move) {
-          writeMove(move);
+        if (coords) {
+          writeMove(coords);
         }
+        break;
+      case 'game':
+        result = parts[1];
+        if (parts.length === 3) {
+          next = parts[2].split(';');
+          const boardCoords = next[0].split(',').map((coord) => parseInt(coord, 10));
+          const moveCoords = next[1].split(',').map((coord) => parseInt(coord, 10)); 
+          player.gameOver(result, boardCoords, moveCoords);
+        } else {
+          player.gameOver(result);
+        }
+        break;
+        case 'match':
+          result = parts[1];
+          player.matchOver(result);
         break;
     }
   });
