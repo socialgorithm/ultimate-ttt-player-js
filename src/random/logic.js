@@ -72,6 +72,7 @@ class GameLogic {
     try {
       const coords = this.getMove();
       this.addMove(coords.board, coords.move);
+      return coords;
     } catch (e) {
         console.error('-------------------------------');
         console.error("\n"+'AddOpponentMove: Game probably already over when adding', board, move, e);
@@ -127,6 +128,16 @@ class GameLogic {
       /* DO SOMETHING WITH TIE NEWS */
     }
   }
+
+  
+  /**
+   * Game Is Over.
+   * You Have Timed Out.
+   */
+  timeout() {
+      console.debug('timeout');
+  }
+
 
   /* ---- Non required methods ----- */
 

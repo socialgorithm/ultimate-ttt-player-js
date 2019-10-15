@@ -28,7 +28,7 @@ function input() {
       case 'move':
         try {
           coords = player.onMove();
-          writeMove(coords);
+            writeMove(coords);
         } catch(e) {
           console.error('Player Error: Failed to get a move', e);
         }
@@ -68,6 +68,9 @@ function input() {
         case 'match':
           result = parts[1];
           player.matchOver(result);
+        break;
+        case 'timeout':
+          player.timeout();
         break;
     }
   });
