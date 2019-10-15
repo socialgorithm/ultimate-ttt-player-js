@@ -95,7 +95,7 @@ class GameLogic {
    */
   gameOver(result, board, move) {
     if(board && move) {
-      this.game.addOpponentMove(board, move);
+      // this.game.addOpponentMove(board, move);
     }
     if (result === 'win') {
       // console.debug('win');
