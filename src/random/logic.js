@@ -98,13 +98,13 @@ class GameLogic {
       this.game.addOpponentMove(board, move);
     }
     if (result === 'win') {
-      console.debug('win');
+      // console.debug('win');
       /* DO SOMETHING WITH WIN NEWS */
     } else if (result === 'lose') {
-      console.debug('lose');
+      // console.debug('lose');
       /* DO SOMETHING WITH LOSE NEWS */
     } else if (result === 'tie') {
-      console.debug('tie');
+      // console.debug('tie');
       /* DO SOMETHING WITH TIE NEWS */
     }
   }
@@ -118,13 +118,13 @@ class GameLogic {
    */
   matchOver(result) {
     if (result === 'win') {
-      console.debug('win');
+      // console.debug('win');
       /* DO SOMETHING WITH WIN NEWS */
     } else if (result === 'lose') {
-      console.debug('lose');
+      // console.debug('lose');
       /* DO SOMETHING WITH LOSE NEWS */
     } else if (result === 'tie') {
-      console.debug('tie');
+      // console.debug('tie');
       /* DO SOMETHING WITH TIE NEWS */
     }
   }
@@ -135,7 +135,7 @@ class GameLogic {
    * You Have Timed Out.
    */
   timeout() {
-      console.debug('timeout');
+      // console.debug('timeout');
   }
 
 
