@@ -31,6 +31,28 @@ class GameLogic {
   }
 
   /**
+   * You are the First To Move
+   * Place Whereever You Want
+   * You Get To Pick The Board
+   * 
+   * @returns {{board: [number,number], move: [number, number]}} Position coordinates {board: [row, col], cell: [row, col]}
+   */
+  onMove() {
+    try {
+      const coords = this.getMove();
+      this.addMove(coords.board, coords.move);
+      return coords;
+    } catch (e) {
+        console.error('-------------------------------');
+        console.error("\n"+'AddOpponentMove: Game probably already over when adding', board, move, e);
+        console.error("\n"+this.game.prettyPrint());
+        console.error("\n"+this.game.stateBoard.prettyPrint(true));
+        console.error('-------------------------------');
+        throw new Error(e);
+    }
+  }
+
+  /**
    * Opponent Has Moved.
    * You Have Opponents Board
    * You Have Opponents Move
@@ -62,28 +84,6 @@ class GameLogic {
   }
 
   /**
-   * You are the First To Move
-   * Place Whereever You Want
-   * You Get To Pick The Board
-   * 
-   * @returns {{board: [number,number], move: [number, number]}} Position coordinates {board: [row, col], cell: [row, col]}
-   */
-  onMove() {
-    try {
-      const coords = this.getMove();
-      this.addMove(coords.board, coords.move);
-      return coords;
-    } catch (e) {
-        console.error('-------------------------------');
-        console.error("\n"+'AddOpponentMove: Game probably already over when adding', board, move, e);
-        console.error("\n"+this.game.prettyPrint());
-        console.error("\n"+this.game.stateBoard.prettyPrint(true));
-        console.error('-------------------------------');
-        throw new Error(e);
-    }
-  }
-
-  /**
    * Game Is Over.
    * You May Wish To Change Stratagy For The New Game.
    * Your Opponent Has Not Changed.
@@ -95,7 +95,7 @@ class GameLogic {
    */
   gameOver(result, board, move) {
     if(board && move) {
-      // this.game.addOpponentMove(board, move);
+      this.game.addOpponentMove(board, move);
     }
     if (result === 'win') {
       // console.debug('win');
