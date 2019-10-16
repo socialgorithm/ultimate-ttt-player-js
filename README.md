@@ -1,4 +1,8 @@
-# ultimate-ttt-player-js
+================================================
+Ultimate TicTacToe - Javascript Player & Game Engine
+================================================
+
+This repo contains a sample player and game engine for our `Ultimate Tic-Tac-Toe workshop_`.
 
 Welcome!
 ========
