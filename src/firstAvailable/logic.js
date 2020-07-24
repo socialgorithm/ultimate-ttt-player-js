@@ -57,6 +57,23 @@ class GameLogic {
             move: move
         };
     }
+    
+    timeout() {
+        // YOU HAVE TIMED OUT
+        // YOU MAY WANT TO RESPOND
+    }
+
+    // RESULT IS "win" | "lose" | "tie"
+    // MOVE WILL TELL YOU LAST MOVE IF LOST
+    gameOver(result, move) {
+        // GAME IS OVER, OPPONENT WONT CHANGE
+    }
+
+    // RESULT IS "win" | "lose" | "tie"
+    // MOVE WILL TELL YOU LAST MOVE IF LOST
+    matchOver(result, move) {
+        // MATCH IS OVER, OPPONENT MAY CHANGE
+    }
 
   /* ---- Non required methods ----- */
 
