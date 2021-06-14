@@ -19,5 +19,9 @@
   "homepage": "https://github.com/aurbano/uttt-player#readme",
   "dependencies": {
     "@socialgorithm/ultimate-ttt": "^4.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "typescript": "^4.3.2"
   }
 }
