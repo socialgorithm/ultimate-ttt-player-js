@@ -1,7 +1,7 @@
 {
   "name": "@socialgorithm/ultimate-ttt-player",
   "private": true,
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "Initial UTTT Player for the algorithm competition",
   "main": "player.js",
   "scripts": {
